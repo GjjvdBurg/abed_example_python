@@ -15,10 +15,13 @@ from sklearn.datasets import make_regression
 from sklearn.datasets.base import Bunch
 from sklearn.cross_validation import train_test_split
 
+from abed.utils import mkdir
+
 N_DATASETS = 10
 DATADIR = '../datasets/'
 
 def main():
+    mkdir(DATADIR)
     for i in range(N_DATASETS):
         bias = 10.0 * random()
         X, y, coef = make_regression(n_samples=900, n_features=20, 
