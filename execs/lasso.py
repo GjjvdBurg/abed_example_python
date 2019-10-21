@@ -14,7 +14,7 @@ import time
 
 from six.moves import cPickle
 
-from sklearn.cross_validation import KFold
+from sklearn.model_selection import KFold
 from sklearn.linear_model import Lasso
 
 
@@ -52,7 +52,8 @@ def run_cv(X, y, cv_seed, alpha):
     """
     train_time = 0.0
     predictions = [0] * len(y)
-    for trainidx, testidx in KFold(len(y), 10, random_state=cv_seed):
+    kf = KFold(10, shuffle=True, random_state=cv_seed)
+    for trainidx, testidx in kf.split(X):
         X_train, X_test = X[trainidx], X[testidx]
         y_train = y[trainidx]
 
@@ -99,6 +100,7 @@ def main(train_filename, test_filename, cv_seed, alpha):
     model on the total training data, and use that to predict the test dataset.  
     Finally print the results to stdout.
     """
+    cv_seed = int(cv_seed)
     alpha = float(alpha)
     print("# lasso, cost = %g" % alpha)
 
