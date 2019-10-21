@@ -15,6 +15,7 @@ OUTPUT_DIR = './output'
 AUTO_SLEEP = 120
 HTML_PORT = 8000
 COMPRESSION = 'bzip2'
+RESULT_EXTENSION = ".txt"
 
 ##############################################################################
 #                          Server parameters and settings                    #
@@ -32,6 +33,7 @@ REMOTE_SCRATCH_ENV = 'TMPDIR'
 MW_SENDATONCE = 20 # number of tasks (hashes!) to send at once
 MW_COPY_WORKER = False
 MW_COPY_SLEEP = 120
+MW_NUM_WORKERS = None
 
 ##############################################################################
 #                               Experiment type                              #
