@@ -15,11 +15,13 @@ from six.moves import cPickle
 
 from sklearn.linear_model import LinearRegression
 
+
 def load_dataset(filename):
     """ Load the dataset from the filename. We assume it is a pickled Bunch """
-    with open(filename, 'rb') as fid:
+    with open(filename, "rb") as fid:
         data = cPickle.load(fid)
     return data
+
 
 def model_fit(X, y):
     """ Fit the model on the given X and y, while measuring fitting time. """
@@ -38,8 +40,15 @@ def model_predict(clf, X):
     return y_pred, duration
 
 
-def print_results(y_train_true, y_train_pred, y_test_true, y_test_pred, 
-        coef_true, coef_pred, total_time):
+def print_results(
+    y_train_true,
+    y_train_pred,
+    y_test_true,
+    y_test_pred,
+    coef_true,
+    coef_pred,
+    total_time,
+):
     """ Print the results to stdout for Abed to pick up. Vector results for 
     which a true and a predicted value exist are printed side by side. Scalar 
     values such as running time are simply printed on a line.
@@ -78,9 +87,16 @@ def main(train_filename, test_filename):
 
     total_time = train_time + pred_time_train + pred_time_test
 
-    print_results(train.y, y_train_pred, test.y, y_test_pred, train.true_coef, 
-            model.coef_, total_time)
+    print_results(
+        train.y,
+        y_train_pred,
+        test.y,
+        y_test_pred,
+        train.true_coef,
+        model.coef_,
+        total_time,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(*sys.argv[1:])
